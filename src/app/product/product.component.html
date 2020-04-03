@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">
+      
+       <ng-container *ngTemplateOutlet="mytemplate"></ng-container>
+      
+    <h5 align="center">Product Component</h5>
+    </div>
+    <div class="card-body">
+    <button class="btn btn-success" (click)="toggleAllProducts()">All Products</button> &nbsp;&nbsp;&nbsp;
+   <button class="btn btn-success" (click)="toggleSearchProduct()">Search Product by id</button> &nbsp;&nbsp;&nbsp;
+    <button class="btn btn-success" (click)="toggleAddEditProduct()">Add/Edit Product</button> &nbsp;&nbsp;&nbsp;
+    <button class="btn btn-success" (click)="toggleDeleteProduct()">Delete Product</button>
+    </div>
+    <div [ngSwitch]="showSection">
+    <div>
+     
+       <app-all-products [productId]="prodId" [imageTemplate]="mytemplate"></app-all-products>
+    </div>
+    <div *ngSwitchCase = "'search'">
+     
+       <app-search-product (searchtext)="onSearch($event)"></app-search-product>
+    </div>
+    <div *ngSwitchCase = "'addedit'">
+       <app-add-edit-product [productId]="prodId" (cancelEvent) ="onCancel()"></app-add-edit-product>
+    </div>
+    <div *ngSwitchCase = "'delete'" >
+       <app-delete-product (deleteEvent)="onDelete($event)"></app-delete-product>
+    </div>
+    <div>
+       <app-observable-products></app-observable-products>
+    </div>
+   
+</div>
+   </div>
+   <ng-template #mytemplate let-header="header">  
+      <img align ="right" src="assets/images/angular.png">
+      <div align="center">{{header}}
+      </div>
+  </ng-template>

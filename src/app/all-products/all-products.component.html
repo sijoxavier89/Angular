@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-header">
+    <ng-container *ngTemplateOutlet="imageTemplate; context:{header:'All Components'}"></ng-container>
+      all products
+    </div>
+    <div class="card-body">
+        <div>Select a currency:
+            <select [(ngModel)]="currencySelected" (change)="changeCurrency()">
+              <option *ngFor="let c of currencies">
+                {{ c }}
+              </option>
+            </select>
+    </div>
+      <table  class="table">
+     <th>
+         Product Id
+     </th>
+     <th>
+        Product Name
+    </th>
+    <th>
+        Category
+    </th>
+    <th>
+        Price
+    </th>
+          <tr *ngFor = "let p of products"  [class.table-active]="p.id == productId">
+             <td>
+                 {{p.id}}
+                 <span *ngIf="p.id == productId">
+                     <button class="btn-danger" (click)="showConfirm()">Delete</button>
+                 </span>
+             </td>
+             <td>
+                {{p.name}}
+            </td>
+            <td>
+                {{p.category}}
+            </td>
+            <td>
+                {{p.price | currency:currencySelected}}
+            </td>
+        
+          </tr>
+       
+      </table>
+      <div *ngIf="confirmDelete == true" >
+          <button (click)="deleteProduct()">Yes</button>
+          <button (click)="cancelDelete()">No</button>
+      </div>
+    </div>
+</div>

@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+.root-component-header
+{
+ background-color: yellow;
+ font-family: 'Verdana';
+ border-style:double;
+}
+.root-component-body
+{
+ background-color: lightcoral;
+ font-family: 'Segoe UI';
+ border-style: double;
+}

@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header">
+        <h5 align="center">Fetch Product data using observables</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-link" (click)="GetAllProducts()">
+        Get All Products
+      </button>
+      <button class="btn btn-link" (click)="StreamAllProducts()">
+        Stream All Products
+       </button>
+    <hr/>
+    <ol>
+       <li *ngFor="let p of products">
+        {{p.id}}, {{p.name}}, {{p.category}}, {{p.price}}
+     </li>
+    </ol>
+   
+        <span>
+           {{product.name}}
+        </span>
+     
+    </div>
+   </div>

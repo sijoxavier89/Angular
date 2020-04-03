@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+  <h5 align="center">Add/Edit a product</h5>
+  </div>
+  <div class="card-body">
+  <p>
+  Product Id:
+  <input type="text" [(ngModel)]="product.id"/>
+  </p>
+  <p>
+  Product Name:
+  <input type="text" [(ngModel)]="product.name"/>
+  </p>
+  <p>
+  Category:
+  <select [(ngModel)]="product.category">
+  <option *ngFor="let c of categories">{{c}}</option>
+  </select>
+  </p>
+  <p>
+  Price:
+  <input type="text" [(ngModel)]="product.price"/>
+  </p>
+ <button class="btn btn-success" (click)=" onSave()">Add/Edit</button> &nbsp;&nbsp;&nbsp;
+  <button class="btn btn-success" (click)="onCancel()">Cancel</button>
+  </div>
+ </div>
