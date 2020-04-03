@@ -11,6 +11,7 @@ export class ObservableProductsComponent implements OnInit {
 
   constructor(private prodservice:ProductobsService) { }
   public products:any;
+  public streamproducts:any[];
   public product:Product;
   ngOnInit(): void {
     
@@ -25,8 +26,10 @@ export class ObservableProductsComponent implements OnInit {
 
   StreamAllProducts()
   {
+    
+    this.streamproducts = new Array<any>();
     this.prodservice.streamAllProducts().subscribe(p => {
-      this.product = p;
+      this.streamproducts.push(p);
       console.log(p);
     })
   }

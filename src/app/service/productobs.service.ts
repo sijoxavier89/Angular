@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, interval } from 'rxjs';
+import { Injectable, ɵɵstylePropInterpolateV } from '@angular/core';
+import { Observable, of, interval, ReplaySubject } from 'rxjs';
 import { Product } from '../model/product.model';
 import { ProductDatasource } from '../model/product.datasource';
-import { element } from 'protractor';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,25 +19,30 @@ export class ProductobsService {
 
   // to push product after every 1 sec 
   // using observable
-  public streamAllProducts(): Observable<Product> {
+  public streamAllProducts(): ReplaySubject<Product> {
 
     const products = this.ds.getProducts();
-    const len = products.length;
-    let i = 0
-
-    const sequence = new Observable((observer) => {
-
-      products.forEach(element => {
-
-
-        setTimeout(() => {
-          observer.next(products[i]);
-        }, 1000
-        );
-      });
-
-
-    });
+    
+    if(products.length === 0)
+    {
+      return;
+    }
+    const sequence = new ReplaySubject<Product>(1);
+   
+    let index = 0;
+    
+    sequence.next(products[index]);
+    index +=1;
+    
+    const timer = setInterval(()=>{
+      sequence.next(products[index]);
+      index+=1;
+      if(index === products.length)
+      {
+         clearInterval(timer);
+      }
+    },1000)
+    
     return sequence;
   }
 }

@@ -16,9 +16,11 @@
      </li>
     </ol>
    
-        <span>
-           {{product.name}}
+    <div *ngIf="streamproducts.length > 0">
+        <span *ngFor="let p of streamproducts">
+           {{p.name}}
         </span>
+    </div>
      
     </div>
    </div>
